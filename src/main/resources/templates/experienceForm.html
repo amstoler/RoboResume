@@ -8,6 +8,9 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
 <body>
+
+<div th:replace="fragments::navbarfragement"></div>
+
 <form th:action="@{/addExperience}" th:method="post" th:object="${experience}">
     <input type="hidden" th:field="*{id}" />
 

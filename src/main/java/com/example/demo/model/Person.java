@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Person {
@@ -14,9 +16,14 @@ public class Person {
     private long id;
 
     private String image;
+    @NotNull
+    @Size(min=1)
     private String name;
+    @NotNull
+    @Size (min=3)
     private String email;
     private String summary;
+
     private String reference;
 
     public Person() {

@@ -30,8 +30,6 @@ public class HomeController {
     @Autowired
     SkillRepo   skillRepo;
 
-    @Autowired
-    ReferenceRepo referenceRepo;
 
     //Below will be map of pathing for web app
     @GetMapping("/")

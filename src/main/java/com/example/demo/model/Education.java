@@ -4,16 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Education {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private long id;
-
+   @NotNull
+   @Size (min=15)
    private String degree;
+   @NotNull
+    @Size (min=15)
    private String univName;
-   private String gradYear;
+
+   @NotNull
+   @Min(1875)
+   private int gradYear;
 
 
     public Education() {
@@ -43,11 +52,11 @@ public class Education {
         this.univName = univName;
     }
 
-    public String getGradYear() {
+    public Integer getGradYear() {
         return gradYear;
     }
 
-    public void setGradYear(String gradYear) {
+    public void setGradYear(Integer gradYear) {
         this.gradYear = gradYear;
     }
 }
