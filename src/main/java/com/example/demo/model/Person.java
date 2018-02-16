@@ -16,6 +16,8 @@ public class Person {
     private String image;
     private String name;
     private String email;
+    private String summary;
+    private String reference;
 
     public Person() {
     }
@@ -50,5 +52,21 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 }

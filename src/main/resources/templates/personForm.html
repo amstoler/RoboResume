@@ -11,9 +11,25 @@
 <form th:action="@{/addPerson}" th:method="post" th:object="${person}">
     <input type="hidden" th:field="*{id}" />
 
+    Image:<input type="text" th:field="*{image}" />
+    <span th:if="${#fields.hasErrors('image')}"
+          th:errors="*{image}"></span><br />
+
     <label for="name"> Name</label>
     <input type="text" id="name" th:field="*{name}"/>
     <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> <br/>
+
+    <label for="email"> Email</label>
+    <input type="text" id="email" th:field="*{email}"/>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> <br/>
+
+    <label for="summary"> Summary</label>
+    <input type="text" id="summary" th:field="*{summary}"/>
+    <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}"></span> <br/>
+
+    <label for="reference"> References</label>
+    <input type="text" id="reference" th:field="*{reference}"/>
+    <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span> <br/>
 
 
     <input type="submit" value="Submit" class="btn btn-primary" />

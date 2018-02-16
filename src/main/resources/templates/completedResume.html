@@ -12,16 +12,45 @@
 <div>
 
     <h2>Person Detail:</h2>
-<table>
+
+    <h4 th:inline="text"> Image: [[${person.image}]] </h4>
+    <img th:src="${person.image}"/>
+    <table>
+
     <tr>
         <th>Name</th>
     </tr>
-    <tr th:each="person : ${personlist}">
+    <tr th:each="person : ${person}">
         <td th:text="${person.name}"></td>
     </tr>
+
+    <tr>
+        <th>Email</th>
+    </tr>
+    <tr th:each="person : ${person}">
+        <td th:text="${person.email}"></td>
+    </tr>
+
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr th:each="person : ${person}">
+        <td th:text="${person.summary}"></td>
+    </tr>
+
+    <tr>
+        <th>References</th>
+    </tr>
+    <tr th:each="person : ${person}">
+        <td th:text="${person.reference}"></td>
+    </tr>
+
+
+
+
 </table>
 
-    <h2>Skils </h2>
+    <!--<h2>Skils </h2>
     <table>
         <tr>
             <th>Name</th>
@@ -29,7 +58,7 @@
         <tr th:each="skills : ${skilllist}">
             <td th:text="${person.name}"></td>
         </tr>
-    </table>
+    </table>-->
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

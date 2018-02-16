@@ -64,7 +64,7 @@ public class HomeController {
         personRepo.save(person);
         model.addAttribute("personlist",personRepo.findAll());
 
-        return "personlist";
+        return "completedResume";
     }
 
     @GetMapping("/addEducation")
