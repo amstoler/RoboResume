@@ -8,7 +8,8 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
 <body>
-
+<form th:action="@{/addSkill}" th:method="post" th:object="${skill}">
+    <input type="hidden" th:field="*{id}" />
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

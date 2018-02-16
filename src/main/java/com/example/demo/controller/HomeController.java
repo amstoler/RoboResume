@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Education;
 import com.example.demo.model.Experience;
 import com.example.demo.model.Person;
+import com.example.demo.model.Skill;
 import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,17 +47,6 @@ public class HomeController {
         return "personForm";
     }
 
-//    When compolete with resume create getmsp class for all models from repo and print our theirs list
-//    kinda like this
-
-//@GetMapping("/completeresume")
-//    public String completeresume(Model model){
-//    model.addAttribute("personlist",personRepo.findAll());
-//model.addAttribute("skilslist",skillRepo.findAll());
-//
-//return "completedresume";
-//}
-
     @PostMapping("/addPerson")
     public String addPerson(@Valid @ModelAttribute("person") Person person,Model model, BindingResult result){
         if(result.hasErrors()){
@@ -64,11 +55,84 @@ public class HomeController {
         personRepo.save(person);
         model.addAttribute("personlist",personRepo.findAll());
 
-        return "completedResume";
+        return "index";
     }
 
     @GetMapping("/addEducation")
-    public String addEducation(){return "educationForm";}
+    public String educationForm(Model model){
+
+        Education education = new Education();
+
+        model.addAttribute("education", education);
+
+        return "educationForm";
+    }
+
+    @PostMapping("/addEducation")
+    public String addEducation(@Valid @ModelAttribute("education") Education education,Model model, BindingResult result){
+        if(result.hasErrors()){
+            return "educationForm";
+        }
+        educationRepo.save(education);
+        model.addAttribute("educationlist",personRepo.findAll());
+
+        return "index";
+    }
+
+  /*  @GetMapping("/addExperience")
+    public String experienceForm(Model model){
+
+        Experience experience = new Experience();
+
+        model.addAttribute("experience", experience);
+
+        return "experienceForm";
+    }
+
+    @PostMapping("/addExperience")
+    public String addExperience(@Valid @ModelAttribute("experience") Experience experience,Model model, BindingResult result){
+        if(result.hasErrors()){
+            return "experienceForm";
+        }
+        experienceRepo.save(experience);
+        model.addAttribute("experiencelist",personRepo.findAll());
+
+        return "completedResume";
+    }
+
+    @GetMapping("/addSkill")
+    public String skillForm(Model model){
+
+        Skill skill = new Skill();
+
+        model.addAttribute("skill", skill);
+
+        return "skillsForm.html";
+    }
+
+    @PostMapping("/addSkill")
+    public String addSkill(@Valid @ModelAttribute("skill") Skill skill,Model model, BindingResult result) {
+        if (result.hasErrors()) {
+            return "skillsForm";
+        }
+        skillRepo.save(skill);
+        model.addAttribute("skilllist", personRepo.findAll());
+
+        return "completedResume";
+    }*/
+
+
+//    When compolete with resume create getmsp class for all models from repo and print our theirs list
+//    kinda like this
+
+@GetMapping("/completedResume")
+    public String completeresume(Model model){
+    model.addAttribute("person",personRepo.findAll());
+    model.addAttribute("education",educationRepo.findAll());
+
+return "completedResume";
+}
+
 
     @GetMapping("/summary")
     public String showSummary() {return "summary";}
@@ -91,12 +155,12 @@ public class HomeController {
     @GetMapping("/view")
     public String showView() {return "view";}
 
-    @RequestMapping("/completedResume")
+    /*@RequestMapping("/completedResume")
     public String showResume(Model model) {
         model.addAttribute("persons", personRepo.findAll());
         return "completedResume";
 
-    }
+    }*/
 
     /*@RequestMapping("/bookList")
     public String listBooks(Model model){
