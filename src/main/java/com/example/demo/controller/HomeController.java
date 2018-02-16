@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Binding;
 import javax.validation.Valid;
@@ -21,7 +18,8 @@ public class HomeController {
     @Autowired
     PersonRepo personRepo;
 
- /*   @Autowired
+
+  @Autowired
     EducationRepo educationRepo;
 
     @Autowired
@@ -31,7 +29,7 @@ public class HomeController {
     SkillRepo   skillRepo;
 
     @Autowired
-    ReferenceRepo referenceRepo;*/
+    ReferenceRepo referenceRepo;
 
     //Below will be map of pathing for web app
     @GetMapping("/")
@@ -47,14 +45,26 @@ public class HomeController {
         return "personForm";
     }
 
+//    When compolete with resume create getmsp class for all models from repo and print our theirs list
+//    kinda like this
+
+//@GetMapping("/completeresume")
+//    public String completeresume(Model model){
+//    model.addAttribute("personlist",personRepo.findAll());
+//model.addAttribute("skilslist",skillRepo.findAll());
+//
+//return "completedresume";
+//}
+
     @PostMapping("/addPerson")
-    public String addPerson(@Valid Person person, BindingResult result){
+    public String addPerson(@Valid @ModelAttribute("person") Person person,Model model, BindingResult result){
         if(result.hasErrors()){
             return "personForm";
         }
         personRepo.save(person);
+        model.addAttribute("personlist",personRepo.findAll());
 
-        return "redirect:/addEducation";
+        return "personlist";
     }
 
     @GetMapping("/addEducation")
@@ -81,8 +91,18 @@ public class HomeController {
     @GetMapping("/view")
     public String showView() {return "view";}
 
-    @GetMapping("/completedResume")
-    public String showResume() {return "completedResume";}
+    @RequestMapping("/completedResume")
+    public String showResume(Model model) {
+        model.addAttribute("persons", personRepo.findAll());
+        return "completedResume";
+
+    }
+
+    /*@RequestMapping("/bookList")
+    public String listBooks(Model model){
+        model.addAttribute("books", bookRepository.findAll());
+        return "bookList";
+    }*/
 
     @GetMapping("/coverLetter")
     public String showCoverLetter() {return "coverLetter";}
