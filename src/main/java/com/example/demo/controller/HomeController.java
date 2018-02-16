@@ -47,7 +47,7 @@ public class HomeController {
         return "personform";
     }
 
-    @PostMapping("/addPerson")
+    /*@PostMapping("/addPerson")
     public String addPerson(@Valid Person person, BindingResult result){
         if(result.hasErrors()){
             return "personform";
@@ -55,7 +55,10 @@ public class HomeController {
         personRepo.save(person);
 
         return "redirect:/";
-    }
+    }*/
+
+    @GetMapping("/summary")
+    public String showSummary() {return "summary";}
 
     @GetMapping("/logo")
     public String showLogo() {return "logo";}
@@ -75,8 +78,8 @@ public class HomeController {
     @GetMapping("/view")
     public String showView() {return "view";}
 
-    @GetMapping("/resume")
-    public String showResume() {return "resume";}
+    @GetMapping("/completedResume")
+    public String showResume() {return "completedResume";}
 
     @GetMapping("/coverLetter")
     public String showCoverLetter() {return "coverLetter";}
