@@ -38,24 +38,27 @@ public class HomeController {
     public String showIndex() {return "index";}
 
     @GetMapping("/addPerson")
-    public String addPerson(Model model){
+    public String personForm(Model model){
 
-        Person person = new Person();
+       Person person = new Person();
 
-        model.addAttribute("person", person);
+       model.addAttribute("person", person);
 
-        return "personform";
+        return "personForm";
     }
 
-    /*@PostMapping("/addPerson")
+    @PostMapping("/addPerson")
     public String addPerson(@Valid Person person, BindingResult result){
         if(result.hasErrors()){
-            return "personform";
+            return "personForm";
         }
         personRepo.save(person);
 
-        return "redirect:/";
-    }*/
+        return "redirect:/addEducation";
+    }
+
+    @GetMapping("/addEducation")
+    public String addEducation(){return "educationForm";}
 
     @GetMapping("/summary")
     public String showSummary() {return "summary";}
