@@ -127,7 +127,7 @@ public class HomeController {
 
 @GetMapping("/completedResume")
     public String completeresume(Model model){
-    model.addAttribute("person",personRepo.findAll());
+    model.addAttribute("persons",personRepo.findAll());
     model.addAttribute("education",educationRepo.findAll());
 
 return "completedResume";
@@ -171,10 +171,16 @@ return "completedResume";
     @GetMapping("/coverLetter")
     public String showCoverLetter() {return "coverLetter";}
 
-    @RequestMapping("/update/{id}")
-    public String updateResume(@PathVariable("id") long id, Model model){
+    @RequestMapping("/updatePerson/{id}")
+    public String updatePerson(@PathVariable("id") long id, Model model){
         model.addAttribute("person", personRepo.findOne(id));
-        return "resumeForm";
+        return "personForm";
+    }
+
+    @RequestMapping("/updateEducation/{id}")
+    public String updateEducation(@PathVariable("id") long id, Model model){
+        model.addAttribute("education", educationRepo.findOne(id));
+        return "educationForm";
     }
 
 

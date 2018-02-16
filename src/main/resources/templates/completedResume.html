@@ -13,6 +13,8 @@
 <!--Person Table-->
     <h2>Person Detail:</h2>
 
+
+
     <!--<h4 th:inline="text"> Image: [[${person.image}]] </h4>
     <img th:src="${person.image}"/>
     -->
@@ -21,7 +23,7 @@
     <tr>
         <th>Image</th>
     </tr>
-        <tr th:each="person : ${person}">
+        <tr th:each="person : ${persons}">
             <td th:text="${person.image}"></td>
 
         <img th:src="${person.image}"/>
@@ -36,22 +38,27 @@
     <tr>
         <th>Email</th>
     </tr>
-    <tr th:each="person : ${person}">
+    <tr th:each="person : ${persons}">
         <td th:text="${person.email}"></td>
     </tr>
 
     <tr>
         <th>Summary</th>
     </tr>
-    <tr th:each="person : ${person}">
+    <tr th:each="person : ${persons}">
         <td th:text="${person.summary}"></td>
     </tr>
 
     <tr>
         <th>References</th>
     </tr>
-    <tr th:each="person : ${person}">
+    <tr th:each="person : ${persons}">
         <td th:text="${person.reference}"></td>
+
+
+        <td>
+        <a th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
+        </td>
     </tr>
     </table>
 
@@ -75,6 +82,10 @@
         </tr>
         <tr th:each="education : ${education}">
             <td th:text="${education.gradYear}"></td>
+
+            <td>
+                <a th:href="@{/updateEducation/{id}(id=${education.id})}">Update</a>
+            </td>
         </tr>
     </table>
 
@@ -99,6 +110,7 @@
             <td th:text="${person.name}"></td>
         </tr>
     </table-->
+
 </div>
 
 <!-- Optional JavaScript -->
